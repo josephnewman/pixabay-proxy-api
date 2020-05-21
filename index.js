@@ -8,15 +8,16 @@ app.use(cors());
 app.options('*', cors());
 
 const PORT = process.env.PORT || 3000;
+const API_KEY = process.env.API_KEY;
 
 console.log(`Listening on port ${PORT}`);
 
 app.use(
   '/api',
   createProxyMiddleware({
-    target: `https://pixabay.com/api/?key=${process.env.API_KEY}&`,
+    target: `https://pixabay.com/api/?key=${API_KEY}&`,
     changeOrigin: true,
-    logLevel: 'debug',
+    logLevel: 'warn',
   })
 );
 
